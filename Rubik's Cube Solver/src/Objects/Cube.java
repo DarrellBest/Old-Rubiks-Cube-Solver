@@ -35,7 +35,7 @@ public class Cube {
 	}
 
 	private void generate() {
-		this.pieces = new ArrayList<PieceInterface>();
+		this.pieces = new ArrayList<>();
 		this.comp = new PieceComparator();
 		this.setMaxSteps(22);
 
@@ -59,12 +59,20 @@ public class Cube {
 		return maxSteps;
 	}
 
+	public String getSolution() {
+		return this.solution;
+	}
+
 	public void setMaxSteps(int maxSteps) {
 		this.maxSteps = maxSteps;
 	}
 
 	private void setSolution() {
 		solution = getCurrentState();
+	}
+
+	private void setSolution(String solution) {
+		this.solution = solution;
 	}
 
 	// Checks to see if the cube is solved
@@ -204,8 +212,7 @@ public class Cube {
 	}
 
 	// fixes orientation of pieces after they move
-	private void updateStickers(ArrayList<PieceInterface> pieces,
-			ArrayList<String> notations) {
+	private void updateStickers(ArrayList<PieceInterface> pieces, ArrayList<String> notations) {
 		for (PieceInterface piece : pieces) {
 			for (Sticker sticker : piece.getStickers()) {
 				// Update face
@@ -223,120 +230,96 @@ public class Cube {
 
 	// Front clockwise rotation
 	private int frontFaceclockwise() {
-		ArrayList<Integer> frontFace = new ArrayList<Integer>(Arrays.asList(1,
-				3, 9, 7, 2, 6, 8, 4));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("l", "u",
-				"r", "d"));
+		ArrayList<Integer> frontFace = new ArrayList<>(Arrays.asList(1, 3, 9, 7, 2, 6, 8, 4));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("l", "u", "r", "d"));
 		clockwise(frontFace, faces);
 		return 1;
 	}
 
 	// Front counter clockwise
 	private int frontFaceCounterClockwise() {
-		ArrayList<Integer> frontFace = new ArrayList<Integer>(Arrays.asList(1,
-				3, 9, 7, 2, 6, 8, 4));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("d", "r",
-				"u", "l"));
+		ArrayList<Integer> frontFace = new ArrayList<>(Arrays.asList(1, 3, 9, 7, 2, 6, 8, 4));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("d", "r", "u", "l"));
 		counterClockwise(frontFace, faces);
 		return 1;
 	}
 
 	// back clockwise rotation
 	private int backFaceClockwise() {
-		ArrayList<Integer> backFace = new ArrayList<Integer>(Arrays.asList(20,
-				18, 24, 26, 19, 21, 25, 23));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("r", "u",
-				"l", "d"));
+		ArrayList<Integer> backFace = new ArrayList<>(Arrays.asList(20, 18, 24, 26, 19, 21, 25, 23));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("r", "u", "l", "d"));
 		clockwise(backFace, faces);
 		return 1;
 	}
 
 	// back counter clockwise rotation
 	private int backFaceCounterClockwise() {
-		ArrayList<Integer> backFace = new ArrayList<Integer>(Arrays.asList(20,
-				18, 24, 26, 19, 21, 25, 23));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("d", "l",
-				"u", "r"));
+		ArrayList<Integer> backFace = new ArrayList<>(Arrays.asList(20, 18, 24, 26, 19, 21, 25, 23));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("d", "l", "u", "r"));
 		counterClockwise(backFace, faces);
 		return 1;
 	}
 
 	// up clockwise rotation
 	private int upperFaceClockwise() {
-		ArrayList<Integer> upFace = new ArrayList<Integer>(Arrays.asList(18,
-				20, 3, 1, 19, 12, 2, 10));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("r", "f",
-				"l", "b"));
+		ArrayList<Integer> upFace = new ArrayList<>(Arrays.asList(18, 20, 3, 1, 19, 12, 2, 10));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("r", "f", "l", "b"));
 		clockwise(upFace, faces);
 		return 1;
 	}
 
 	// up counter clockwise rotation
 	private int upperFaceCounterClockwise() {
-		ArrayList<Integer> upFace = new ArrayList<Integer>(Arrays.asList(18,
-				20, 3, 1, 19, 12, 2, 10));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("b", "l",
-				"f", "r"));
+		ArrayList<Integer> upFace = new ArrayList<>(Arrays.asList(18, 20, 3, 1, 19, 12, 2, 10));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("b", "l", "f", "r"));
 		counterClockwise(upFace, faces);
 		return 1;
 	}
 
 	// down clockwise rotation
 	private int downFaceClockwise() {
-		ArrayList<Integer> downFace = new ArrayList<Integer>(Arrays.asList(7,
-				9, 26, 24, 8, 17, 25, 15));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("r", "f",
-				"l", "b"));
+		ArrayList<Integer> downFace = new ArrayList<>(Arrays.asList(7, 9, 26, 24, 8, 17, 25, 15));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("r", "f", "l", "b"));
 		clockwise(downFace, faces);
 		return 1;
 	}
 
 	// down counter clockwise rotation
 	private int downFaceCounterClockwise() {
-		ArrayList<Integer> downFace = new ArrayList<Integer>(Arrays.asList(7,
-				9, 26, 24, 8, 17, 25, 15));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("b", "l",
-				"f", "r"));
+		ArrayList<Integer> downFace = new ArrayList<>(Arrays.asList(7, 9, 26, 24, 8, 17, 25, 15));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("b", "l", "f", "r"));
 		counterClockwise(downFace, faces);
 		return 1;
 	}
 
 	// left clockwise rotation
 	private int leftFaceClockwise() {
-		ArrayList<Integer> downFace = new ArrayList<Integer>(Arrays.asList(18,
-				1, 7, 24, 10, 4, 15, 21));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("u", "f",
-				"d", "b"));
+		ArrayList<Integer> downFace = new ArrayList<>(Arrays.asList(18, 1, 7, 24, 10, 4, 15, 21));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("u", "f", "d", "b"));
 		clockwise(downFace, faces);
 		return 1;
 	}
 
 	// left counter clockwise rotation
 	private int leftFaceCounterClockwise() {
-		ArrayList<Integer> downFace = new ArrayList<Integer>(Arrays.asList(18,
-				1, 7, 24, 10, 4, 15, 21));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("b", "d",
-				"f", "u"));
+		ArrayList<Integer> downFace = new ArrayList<>(Arrays.asList(18, 1, 7, 24, 10, 4, 15, 21));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("b", "d", "f", "u"));
 		counterClockwise(downFace, faces);
 		return 1;
 	}
 
 	// right clockwise rotation
 	private int rightFaceClockwise() {
-		ArrayList<Integer> downFace = new ArrayList<Integer>(Arrays.asList(3,
-				20, 26, 9, 12, 23, 17, 6));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("f", "u",
-				"b", "d"));
+		ArrayList<Integer> downFace = new ArrayList<>(Arrays.asList(3, 20, 26, 9, 12, 23, 17, 6));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("f", "u", "b", "d"));
 		clockwise(downFace, faces);
 		return 1;
 	}
 
 	// right counter clockwise rotation
 	private int rightFaceCounterClockwise() {
-		ArrayList<Integer> downFace = new ArrayList<Integer>(Arrays.asList(3,
-				20, 26, 9, 12, 23, 17, 6));
-		ArrayList<String> faces = new ArrayList<String>(Arrays.asList("d", "b",
-				"u", "f"));
+		ArrayList<Integer> downFace = new ArrayList<>(Arrays.asList(3, 20, 26, 9, 12, 23, 17, 6));
+		ArrayList<String> faces = new ArrayList<>(Arrays.asList("d", "b", "u", "f"));
 		counterClockwise(downFace, faces);
 		return 1;
 	}
@@ -348,35 +331,25 @@ public class Cube {
 		PieceInterface edgeOne, edgeTwo, edgeThree, edgeFour;
 
 		// Get Corners and update rotated positions
-		(cornerOne = pieces.get(positions.get(0) - 1)).setPosition(positions
-				.get(1));
-		(cornerTwo = pieces.get(positions.get(1) - 1)).setPosition(positions
-				.get(2));
-		(cornerThree = pieces.get(positions.get(2) - 1)).setPosition(positions
-				.get(3));
-		(cornerFour = pieces.get(positions.get(3) - 1)).setPosition(positions
-				.get(0));
+		(cornerOne = pieces.get(positions.get(0) - 1)).setPosition(positions.get(1));
+		(cornerTwo = pieces.get(positions.get(1) - 1)).setPosition(positions.get(2));
+		(cornerThree = pieces.get(positions.get(2) - 1)).setPosition(positions.get(3));
+		(cornerFour = pieces.get(positions.get(3) - 1)).setPosition(positions.get(0));
 
 		// Setup list to update faces
-		corners = new ArrayList<PieceInterface>(Arrays.asList(cornerOne,
-				cornerTwo, cornerThree, cornerFour));
+		corners = new ArrayList<>(Arrays.asList(cornerOne, cornerTwo, cornerThree, cornerFour));
 
 		// update the notations of stickers of the corners
 		updateStickers(corners, faces);
 
 		// Get edges and update rotated positions
-		(edgeOne = pieces.get(positions.get(4) - 1)).setPosition(positions
-				.get(5));
-		(edgeTwo = pieces.get(positions.get(5) - 1)).setPosition(positions
-				.get(6));
-		(edgeThree = pieces.get(positions.get(6) - 1)).setPosition(positions
-				.get(7));
-		(edgeFour = pieces.get(positions.get(7) - 1)).setPosition(positions
-				.get(4));
+		(edgeOne = pieces.get(positions.get(4) - 1)).setPosition(positions.get(5));
+		(edgeTwo = pieces.get(positions.get(5) - 1)).setPosition(positions.get(6));
+		(edgeThree = pieces.get(positions.get(6) - 1)).setPosition(positions.get(7));
+		(edgeFour = pieces.get(positions.get(7) - 1)).setPosition(positions.get(4));
 
 		// Setup list to update faces
-		edges = new ArrayList<PieceInterface>(Arrays.asList(edgeOne, edgeTwo,
-				edgeThree, edgeFour));
+		edges = new ArrayList<>(Arrays.asList(edgeOne, edgeTwo, edgeThree, edgeFour));
 
 		// update the notations of stickers of the edges
 		updateStickers(edges, faces);
@@ -386,42 +359,31 @@ public class Cube {
 	}
 
 	// counter clockwise rotation
-	private void counterClockwise(ArrayList<Integer> positions,
-			ArrayList<String> faces) {
+	private void counterClockwise(ArrayList<Integer> positions, ArrayList<String> faces) {
 		ArrayList<PieceInterface> corners, edges;
 		PieceInterface cornerOne, cornerTwo, cornerThree, cornerFour;
 		PieceInterface edgeOne, edgeTwo, edgeThree, edgeFour;
 
 		// Get Corners and update rotated positions
-		(cornerOne = pieces.get(positions.get(0) - 1)).setPosition(positions
-				.get(3));
-		(cornerTwo = pieces.get(positions.get(1) - 1)).setPosition(positions
-				.get(0));
-		(cornerThree = pieces.get(positions.get(2) - 1)).setPosition(positions
-				.get(1));
-		(cornerFour = pieces.get(positions.get(3) - 1)).setPosition(positions
-				.get(2));
+		(cornerOne = pieces.get(positions.get(0) - 1)).setPosition(positions.get(3));
+		(cornerTwo = pieces.get(positions.get(1) - 1)).setPosition(positions.get(0));
+		(cornerThree = pieces.get(positions.get(2) - 1)).setPosition(positions.get(1));
+		(cornerFour = pieces.get(positions.get(3) - 1)).setPosition(positions.get(2));
 
 		// Setup list to update faces
-		corners = new ArrayList<PieceInterface>(Arrays.asList(cornerOne,
-				cornerTwo, cornerThree, cornerFour));
+		corners = new ArrayList<>(Arrays.asList(cornerOne, cornerTwo, cornerThree, cornerFour));
 
 		// update the notations of stickers of the corners
 		updateStickers(corners, faces);
 
 		// Get edges and update rotated positions
-		(edgeOne = pieces.get(positions.get(4) - 1)).setPosition(positions
-				.get(7));
-		(edgeTwo = pieces.get(positions.get(5) - 1)).setPosition(positions
-				.get(4));
-		(edgeThree = pieces.get(positions.get(6) - 1)).setPosition(positions
-				.get(5));
-		(edgeFour = pieces.get(positions.get(7) - 1)).setPosition(positions
-				.get(6));
+		(edgeOne = pieces.get(positions.get(4) - 1)).setPosition(positions.get(7));
+		(edgeTwo = pieces.get(positions.get(5) - 1)).setPosition(positions.get(4));
+		(edgeThree = pieces.get(positions.get(6) - 1)).setPosition(positions.get(5));
+		(edgeFour = pieces.get(positions.get(7) - 1)).setPosition(positions.get(6));
 
 		// Setup list to update faces
-		edges = new ArrayList<PieceInterface>(Arrays.asList(edgeOne, edgeTwo,
-				edgeThree, edgeFour));
+		edges = new ArrayList<>(Arrays.asList(edgeOne, edgeTwo, edgeThree, edgeFour));
 
 		// update the notations of stickers of the edges
 		updateStickers(edges, faces);

@@ -1,3 +1,4 @@
+
 package Main;
 
 /*
@@ -8,12 +9,11 @@ package Main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Queue;
 
 import Objects.Cube;
 
-public class BreadthFirstSearch implements Runnable {
+public class RecursiveBreadthFirstSearch implements Runnable {
 
 	public class Load implements Runnable {
 		@Override
@@ -36,13 +36,13 @@ public class BreadthFirstSearch implements Runnable {
 	private String threadName;
 	private int queueSize;
 
-	public BreadthFirstSearch(Cube cube, String threadName) {
+	public RecursiveBreadthFirstSearch(Cube cube, String threadName) {
 		solutions = new ArrayList<>();
 		this.cube = cube;
 		this.threadName = threadName;
 
-		if (threadName.contentEquals("0"))
-			queue = new LinkedList<>(Arrays.asList(" "));
+		// if (threadName.contentEquals("0"))
+		// queue = new LinkedList<>(Arrays.asList(" "));
 	}
 
 	public void load() {

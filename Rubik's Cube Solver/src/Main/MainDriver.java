@@ -25,7 +25,10 @@ public class MainDriver {
 		// Works fine if set to 6 random moves, but the solver runs out of
 		// memory with 7 or more
 		// Average runtime with randomization is 1 minute
-		randomSteps = main.randomize(5);
+		randomSteps = main.randomize(1);
+
+		System.out.println("Solved  state: " + main.getSolution());
+		System.out.println("Current state: " + main.getCurrentState());
 
 		if (randomSteps.length() > 0)
 			System.out.println("Mix: " + main.formatString(randomSteps));
@@ -33,8 +36,6 @@ public class MainDriver {
 		// Start Thread using BFS on Main
 		bfs = new BreadthFirstSearch(main, "0");
 		bfs.start();
-
-		// Runs on a single thread for demonstration purposes only.
 
 	}
 }
